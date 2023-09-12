@@ -2,14 +2,8 @@
 
 # Payload CMS
 
-## Code-first Headless CMS that bridges the gap between CMS and application framework
+### How to Use locally
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/820m28?referralCode=ySCnWl)
-
-The original project was created using `npx create-payload-app` and used the blank template.
-
-## How to Use locally
-
-- `yarn install` to install the needed dependencies
+- `npm install` to install the needed dependencies
 - Install and configure the [Railway CLI](https://docs.railway.app/develop/cli)
-- `railway run yarn dev` will start up your application and reload on any changes.
+- `railway run npm run dev` will start up your application and reload on any changes.
