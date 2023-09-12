@@ -8,14 +8,13 @@ dotenv.config({
 import { buildConfig } from 'payload/config';
 import Users from './collections/Users';
 import Documents from './collections/Documents';
-
-const serverURL = process.env.PAYLOAD_PUBLIC_SERVER_URL;
+import OpenGraphImages from './collections/OpenGraphImages';
 
 export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Documents],
+  collections: [OpenGraphImages, Documents, Users],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
