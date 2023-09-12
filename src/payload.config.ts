@@ -7,7 +7,7 @@ dotenv.config({
 
 import { buildConfig } from 'payload/config';
 import Users from './collections/Users';
-import Media from './collections/Media';
+import Documents from './collections/Documents';
 
 const serverURL = process.env.PAYLOAD_PUBLIC_SERVER_URL;
 
@@ -16,7 +16,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Media],
+  collections: [Users, Documents],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
