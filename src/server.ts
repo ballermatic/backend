@@ -1,3 +1,10 @@
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({
+  path: path.resolve(__dirname, '../.env'),
+});
+
 import express from 'express';
 import payload from 'payload';
 
@@ -16,8 +23,8 @@ const start = async () => {
     express: app,
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
-    }
-  })
+    },
+  });
 
   // Add your own express routes here
 
@@ -27,7 +34,7 @@ const start = async () => {
 
   const PORT = process.env.PORT || 3000;
 
-	app.listen(PORT);
-}
+  app.listen(PORT);
+};
 
 start();
