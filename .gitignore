@@ -1,3 +1,9 @@
+# Upload collection directories
+documents/*
+!documents/.gitkeep
+og-img/*
+!og-img/.gitkeep
+
 ### Node ###
 # Logs
 logs
