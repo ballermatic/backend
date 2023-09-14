@@ -6,6 +6,7 @@ dotenv.config({
 });
 
 import { buildConfig } from 'payload/config';
+import Posts from './collections/Posts';
 import Users from './collections/Users';
 import Documents from './collections/Documents';
 import OpenGraphImages from './collections/OpenGraphImages';
@@ -16,7 +17,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [OpenGraphImages, Documents, Users],
+  collections: [Posts, OpenGraphImages, Documents, Users],
   globals: [PrivacyPolicy, CookiePolicy],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
