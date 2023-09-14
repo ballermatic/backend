@@ -48,6 +48,33 @@ export const Posts: CollectionConfig = {
         description: 'Brief overview of the content',
       },
     },
+    {
+      name: 'content',
+      type: 'richText',
+      admin: {
+        elements: ['h2', 'h3', 'h4', 'link', 'ul', 'ol', 'indent', 'blockquote', 'upload'],
+        leaves: ['bold', 'italic'],
+      },
+    },
+    {
+      name: 'displayDate',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+        description: 'Publicly shown publish date',
+      },
+      defaultValue: () => new Date(),
+    },
+    {
+      name: 'author',
+      type: 'relationship',
+      relationTo: 'users',
+      // defaultValues can use functions to return data to populate the create form and also when making POST requests the server will use the value or function to fill in any undefined fields before validation occurs
+      defaultValue: ({ user }) => user.id,
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 };
 

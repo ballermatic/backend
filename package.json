@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@nouance/payload-better-fields-plugin": "^0.6.1",
+    "@payloadcms/plugin-seo": "^1.0.14-canary.0",
     "dotenv": "^16.3.1",
     "express": "^4.17.1",
     "payload": "latest"

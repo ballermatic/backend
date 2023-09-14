@@ -12,6 +12,7 @@ import Documents from './collections/Documents';
 import OpenGraphImages from './collections/OpenGraphImages';
 import PrivacyPolicy from './globals/PrivacyPolicy';
 import CookiePolicy from './globals/CookiePolicy';
+import seo from '@payloadcms/plugin-seo';
 
 export default buildConfig({
   admin: {
@@ -25,4 +26,5 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
+  plugins: [seo({ collections: ['posts'] })],
 });
