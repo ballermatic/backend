@@ -18,6 +18,7 @@ const OpenGraphImages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'filename'],
+    description: '1200x630 pixels',
   },
   upload: {
     adminThumbnail: 'thumbnail',

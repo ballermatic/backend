@@ -26,5 +26,13 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
-  plugins: [seo({ collections: ['posts'] })],
+  plugins: [
+    seo({
+      collections: ['posts'],
+      uploadsCollection: 'og-img',
+      // todo: typesafety
+      // generateTitle: ({ doc }) => `${doc.title.value} | BrandName`,
+      // generateDescription: ({ doc }) => doc.excerpt,
+    }),
+  ],
 });
