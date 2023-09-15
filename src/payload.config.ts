@@ -30,9 +30,6 @@ export default buildConfig({
     seo({
       collections: ['posts'],
       uploadsCollection: 'og-img',
-      // todo: typesafety
-      // generateTitle: ({ doc }) => `${doc.title.value} | BrandName`,
-      // generateDescription: ({ doc }) => doc.excerpt,
     }),
   ],
 });
