@@ -7,9 +7,9 @@ dotenv.config({
 
 import express from 'express';
 import payload from 'payload';
-import nodemailerSendgrid from 'nodemailer-sendgrid';
+// import nodemailerSendgrid from 'nodemailer-sendgrid';
 
-const sendGridAPIKey = process.env.SENDGRID_API_KEY;
+// const sendGridAPIKey = process.env.SENDGRID_API_KEY;
 
 const app = express();
 
@@ -26,25 +26,25 @@ const start = async () => {
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
     },
-    ...(sendGridAPIKey
-      ? {
-          email: {
-            transportOptions: nodemailerSendgrid({
-              apiKey: sendGridAPIKey,
-            }),
-            fromName: 'Admin',
-            fromAddress: 'admin@gravybo.at',
-          },
-        }
-      : {}),
+    // ...(sendGridAPIKey
+    //   ? {
+    //       email: {
+    //         transportOptions: nodemailerSendgrid({
+    //           apiKey: sendGridAPIKey,
+    //         }),
+    //         fromName: 'Admin',
+    //         fromAddress: 'admin@gravybo.at',
+    //       },
+    //     }
+    //   : {}),
   });
 
   // Custom express routes
 
   // Railway healthcheck
-  // app.get('/health', (_, res) => {
-  //   res.sendStatus(200);
-  // });
+  app.get('/health', (_, res) => {
+    res.sendStatus(200);
+  });
 
   app.listen(3000);
 };
