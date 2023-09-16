@@ -39,10 +39,12 @@ const start = async () => {
       : {}),
   });
 
-  // Add your own express routes here
-  app.get('/health', (_, res) => {
-    res.sendStatus(200);
-  });
+  // Custom express routes
+
+  // Railway healthcheck
+  // app.get('/health', (_, res) => {
+  //   res.sendStatus(200);
+  // });
 
   app.listen(3000);
 };
