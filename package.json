@@ -1,6 +1,6 @@
 {
-  "name": "payload-cms-template",
-  "description": "Payload project created from the blank template",
+  "name": "backend",
+  "description": "Backend powered by Payload CMS",
   "version": "1.0.0",
   "main": "dist/server.js",
   "license": "MIT",
@@ -32,5 +32,8 @@
     "nodemon": "^2.0.6",
     "ts-node": "^9.1.1",
     "typescript": "^4.8.4"
+  },
+  "engines": {
+    "node": "18"
   }
 }
