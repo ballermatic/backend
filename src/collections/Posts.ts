@@ -10,26 +10,27 @@ export const Posts: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
-    preview: (doc) => {
-      return `${process.env.PAYLOAD_PUBLIC_SITE_URL}/api/preview?url=${encodeURIComponent(
-        formatAppURL({
-          doc,
-        }),
-      )}&collection=posts&slug=${doc.slug}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`;
-    },
+    // preview: (doc) => {
+    //   return `${process.env.PAYLOAD_PUBLIC_FRONTEND}/api/preview?url=${encodeURIComponent(
+    //     formatAppURL({
+    //       doc,
+    //     }),
+    //   )}&collection=posts&slug=${doc.slug}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`;
+    // },
   },
   versions: {
     drafts: true,
   },
   access: {
-    read: publishedOrLoggedIn,
-    create: loggedIn,
-    update: loggedIn,
-    delete: loggedIn,
+    read: () => true,
+    // read: publishedOrLoggedIn,
+    // create: loggedIn,
+    // update: loggedIn,
+    // delete: loggedIn,
   },
-  hooks: {
-    afterChange: [revalidateEntity],
-  },
+  // hooks: {
+  //   afterChange: [revalidateEntity],
+  // },
   fields: [
     {
       name: 'title',
@@ -52,8 +53,10 @@ export const Posts: CollectionConfig = {
       name: 'content',
       type: 'richText',
       admin: {
+        // Enable and disable text editor options
         elements: ['h2', 'h3', 'h4', 'link', 'ul', 'ol', 'indent', 'blockquote', 'upload'],
-        leaves: ['bold', 'italic'],
+        // leaves: ['bold', 'italic'],
+        // todo: enable uploads
       },
     },
     {
