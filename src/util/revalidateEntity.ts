@@ -3,7 +3,7 @@ import type { AfterChangeHook } from 'payload/dist/collections/config/types';
 // ensure that the home page is revalidated at '/' instead of '/home'
 export const formatAppURL = ({ doc }): string => {
   const pathToUse = doc.slug;
-  const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_SITE_URL}/${pathToUse}`);
+  const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_FRONTEND}/${pathToUse}`);
   return pathname;
 };
 
@@ -19,7 +19,7 @@ export const revalidateEntity: AfterChangeHook = ({ doc, req, operation }) => {
     const revalidate = async (): Promise<void> => {
       try {
         const res = await fetch(
-          `${process.env.PAYLOAD_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&collection=posts&slug=${doc?.slug}&path=${url}`,
+          `${process.env.PAYLOAD_PUBLIC_FRONTEND}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&collection=posts&slug=${doc?.slug}&path=${url}`,
         );
 
         if (res.ok) {

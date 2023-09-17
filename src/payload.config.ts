@@ -18,6 +18,15 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
+  serverURL: process.env.PAYLOAD_PUBLIC_BACKEND,
+  cors: [
+    process.env.PAYLOAD_PUBLIC_BACKEND || '',
+    process.env.PAYLOAD_PUBLIC_FRONTEND || '',
+  ].filter(Boolean),
+  csrf: [
+    process.env.PAYLOAD_PUBLIC_BACKEND || '',
+    process.env.PAYLOAD_PUBLIC_FRONTEND || '',
+  ].filter(Boolean),
   collections: [Posts, OpenGraphImages, Documents, Users],
   globals: [PrivacyPolicy, CookiePolicy],
   typescript: {
@@ -25,7 +34,6 @@ export default buildConfig({
   },
   graphQL: {
     disable: true,
-    // schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   plugins: [
     seo({
