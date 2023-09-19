@@ -12,6 +12,11 @@ export const publishedOrLoggedIn: Access = ({ req: { user } }) => {
           equals: 'published',
         },
       },
+      {
+        _status: {
+          exists: false,
+        },
+      },
     ],
   };
 };
