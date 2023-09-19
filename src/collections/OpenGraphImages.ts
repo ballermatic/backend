@@ -10,7 +10,7 @@ const OpenGraphImages: CollectionConfig = {
     plural: 'Open Graph Images',
   },
   access: {
-    read: publishedOrLoggedIn,
+    read: () => true,
     create: loggedIn,
     update: loggedIn,
     delete: loggedIn,

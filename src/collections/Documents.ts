@@ -1,6 +1,5 @@
 import { CollectionConfig } from 'payload/types';
 import path from 'path';
-import { publishedOrLoggedIn } from '../util/publishedOrLoggedIn';
 import { loggedIn } from '../util/loggedIn';
 
 export const Documents: CollectionConfig = {
@@ -9,7 +8,7 @@ export const Documents: CollectionConfig = {
     staticDir: path.resolve(__dirname, '../../documents'),
   },
   access: {
-    read: publishedOrLoggedIn,
+    read: () => true,
     create: loggedIn,
     update: loggedIn,
     delete: loggedIn,
