@@ -9,6 +9,7 @@ import { buildConfig } from 'payload/config';
 import Posts from './collections/Posts';
 import Users from './collections/Users';
 import Documents from './collections/Documents';
+import Categories from './collections/Categories';
 import OpenGraphImages from './collections/OpenGraphImages';
 import PrivacyPolicy from './globals/PrivacyPolicy';
 import CookiePolicy from './globals/CookiePolicy';
@@ -27,7 +28,7 @@ export default buildConfig({
     process.env.PAYLOAD_PUBLIC_BACKEND || '',
     process.env.PAYLOAD_PUBLIC_FRONTEND || '',
   ].filter(Boolean),
-  collections: [Posts, OpenGraphImages, Documents, Users],
+  collections: [Posts, Categories, OpenGraphImages, Documents, Users],
   globals: [PrivacyPolicy, CookiePolicy],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

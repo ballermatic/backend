@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import CategorySummary from '../components/CategorySummary';
+import { loggedIn } from '../util/loggedIn';
 
 const Categories: CollectionConfig = {
   slug: 'categories',
@@ -9,6 +10,9 @@ const Categories: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: loggedIn,
+    update: loggedIn,
+    delete: loggedIn,
   },
   fields: [
     {
