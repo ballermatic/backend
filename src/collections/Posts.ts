@@ -10,32 +10,30 @@ export const Posts: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
-    // preview: (doc) => {
-    //   return `${process.env.PAYLOAD_PUBLIC_FRONTEND}/api/preview?url=${encodeURIComponent(
-    //     formatAppURL({
-    //       doc,
-    //     }),
-    //   )}&collection=posts&slug=${doc.slug}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`;
-    // },
+    preview: (doc) => {
+      return `${process.env.PAYLOAD_PUBLIC_FRONTEND}/api/preview?url=${encodeURIComponent(
+        formatAppURL({
+          doc,
+        }),
+      )}&collection=posts&slug=${doc.slug}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`;
+    },
   },
   versions: {
     drafts: true,
   },
   access: {
-    read: () => true,
-    // read: publishedOrLoggedIn,
-    // create: loggedIn,
-    // update: loggedIn,
-    // delete: loggedIn,
+    read: publishedOrLoggedIn,
+    create: loggedIn,
+    update: loggedIn,
+    delete: loggedIn,
   },
-  // hooks: {
-  //   afterChange: [revalidateEntity],
-  // },
+  hooks: {
+    afterChange: [revalidateEntity],
+  },
   fields: [
     {
       name: 'title',
       type: 'text',
-      required: true,
     },
     ...SlugField(['title'], undefined, {
       admin: {
