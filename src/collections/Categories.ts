@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
+import { isLoggedIn } from '../access/isLoggedIn';
 import CategorySummary from '../components/CategorySummary';
-import { loggedIn } from '../util/loggedIn';
 
 const Categories: CollectionConfig = {
   slug: 'categories',
@@ -10,9 +10,9 @@ const Categories: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: loggedIn,
-    update: loggedIn,
-    delete: loggedIn,
+    create: isLoggedIn,
+    update: isLoggedIn,
+    delete: isLoggedIn,
   },
   fields: [
     {

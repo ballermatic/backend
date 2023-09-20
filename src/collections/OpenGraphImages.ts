@@ -1,7 +1,6 @@
 import { CollectionConfig } from 'payload/types';
+import { isLoggedIn } from '../access/isLoggedIn';
 import path from 'path';
-import { loggedIn } from '../util/loggedIn';
-import { publishedOrLoggedIn } from '../util/publishedOrLoggedIn';
 
 const OpenGraphImages: CollectionConfig = {
   slug: 'og-img',
@@ -11,9 +10,9 @@ const OpenGraphImages: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: loggedIn,
-    update: loggedIn,
-    delete: loggedIn,
+    create: isLoggedIn,
+    update: isLoggedIn,
+    delete: isLoggedIn,
   },
   admin: {
     useAsTitle: 'title',
