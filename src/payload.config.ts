@@ -15,19 +15,21 @@ import PrivacyPolicy from './globals/PrivacyPolicy';
 import CookiePolicy from './globals/CookiePolicy';
 import seo from '@payloadcms/plugin-seo';
 
+// Toggle cors and csrf settings for local development
+let localOrLive: string[];
+if (process.env.NODE_ENV === 'production') {
+  localOrLive = [process.env.PAYLOAD_PUBLIC_BACKEND, process.env.PAYLOAD_PUBLIC_FRONTEND];
+} else {
+  localOrLive = ['*'];
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
   },
   serverURL: process.env.PAYLOAD_PUBLIC_BACKEND,
-  cors: [
-    process.env.PAYLOAD_PUBLIC_BACKEND || '',
-    process.env.PAYLOAD_PUBLIC_FRONTEND || '',
-  ].filter(Boolean),
-  csrf: [
-    process.env.PAYLOAD_PUBLIC_BACKEND || '',
-    process.env.PAYLOAD_PUBLIC_FRONTEND || '',
-  ].filter(Boolean),
+  cors: localOrLive,
+  csrf: localOrLive,
   collections: [Posts, Categories, OpenGraphImages, Documents, Users],
   globals: [PrivacyPolicy, CookiePolicy],
   typescript: {
