@@ -3,9 +3,9 @@ import type { CollectionConfig } from 'payload/types';
 import { SlugField } from '@nouance/payload-better-fields-plugin';
 import { formatAppURL, revalidateEntity } from '../util/revalidateEntity';
 import { isAdmin } from '../access/isAdmin';
-import { isAdminOrHasSiteAccessOrPublished } from '../access/isAdminHasSiteAccessOrPublished';
-import { isAdminOrHasSiteAccess } from '../access/isAdminOrHasSiteAccess';
-import { isLoggedIn } from '../access/isLoggedIn';
+import { isAdminOrEditorOrPublished } from '../access/isAdminOrEditorOrPublished';
+import { isAdminOrEditor } from '../access/isAdminOrEditor';
+// import { isLoggedIn } from '../access/isLoggedIn';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -25,12 +25,11 @@ export const Posts: CollectionConfig = {
   },
   access: {
     // Anyone logged in can create
-    create: isLoggedIn,
+    create: isAdminOrEditor,
     // Only admins or editors with site access can update
-    update: isAdminOrHasSiteAccess(),
-    // Admins or editors with site access can read,
-    // otherwise users not logged in can only read published
-    read: isAdminOrHasSiteAccessOrPublished,
+    update: isAdminOrEditor,
+    // Admins or editors can read, otherwise users not logged in can only read published
+    read: isAdminOrEditorOrPublished,
     // Only admins can delete
     delete: isAdmin,
   },
