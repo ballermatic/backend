@@ -14,6 +14,11 @@ const Users: CollectionConfig = {
     // It should be kept to as low as possible, which
     // keeps performance fast.
     depth: 0,
+    cookies: {
+      sameSite: 'none',
+      secure: true,
+      domain: process.env.COOKIE_DOMAIN,
+    },
   },
   access: {
     // Only admins can create users
