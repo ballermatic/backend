@@ -1,9 +1,11 @@
 import type { CollectionConfig } from 'payload/types';
 
 import { SlugField } from '@nouance/payload-better-fields-plugin';
-import { loggedIn } from '../util/loggedIn';
-import { publishedOrLoggedIn } from '../util/publishedOrLoggedIn';
 import { formatAppURL, revalidateEntity } from '../util/revalidateEntity';
+import { isAdmin } from '../access/isAdmin';
+import { isAdminOrHasSiteAccessOrPublished } from '../access/isAdminHasSiteAccessOrPublished';
+import { isAdminOrHasSiteAccess } from '../access/isAdminOrHasSiteAccess';
+import { isLoggedIn } from '../access/isLoggedIn';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -22,10 +24,15 @@ export const Posts: CollectionConfig = {
     drafts: true,
   },
   access: {
-    read: publishedOrLoggedIn,
-    create: loggedIn,
-    update: loggedIn,
-    delete: loggedIn,
+    // Anyone logged in can create
+    create: isLoggedIn,
+    // Only admins or editors with site access can update
+    update: isAdminOrHasSiteAccess(),
+    // Admins or editors with site access can read,
+    // otherwise users not logged in can only read published
+    read: isAdminOrHasSiteAccessOrPublished,
+    // Only admins can delete
+    delete: isAdmin,
   },
   hooks: {
     afterChange: [revalidateEntity],

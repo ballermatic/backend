@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
+import { isLoggedIn } from '../access/isLoggedIn';
 import path from 'path';
-import { loggedIn } from '../util/loggedIn';
 
 export const Documents: CollectionConfig = {
   slug: 'documents',
@@ -9,9 +9,9 @@ export const Documents: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: loggedIn,
-    update: loggedIn,
-    delete: loggedIn,
+    create: isLoggedIn,
+    update: isLoggedIn,
+    delete: isLoggedIn,
   },
   admin: {
     useAsTitle: 'title',
